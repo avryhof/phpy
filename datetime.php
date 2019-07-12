@@ -47,6 +47,8 @@ class python_datetime
             'second' => int($second),
             'tzinfo' => int($tzinfo)
         ]);
+
+        return $this->timetuple;
     }
 
     function __toString()
