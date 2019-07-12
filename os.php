@@ -1,5 +1,4 @@
 <?php
-namespace python;
 
 class python_path {
     function exists($path) {

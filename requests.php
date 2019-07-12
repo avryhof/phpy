@@ -1,5 +1,5 @@
 <?php
-require_once("stdlib.php");
+require_once(__DIR__ . DIRECTORY_SEPARATOR . "stdlib.php");
 
 class python_HttpResponse {
     var $status_code;
