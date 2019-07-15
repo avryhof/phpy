@@ -10,19 +10,38 @@ class python_HttpResponse {
     var $encoding;
     var $is_redirect;
     var $detail;
+    var $http_code;
+    var $header_size;
+    var $request_size;
+    var $filetime;
+    var $ssl_verify_result;
+    var $redirect_count;
+    var $total_time;
+    var $namelookup_time;
+    var $connect_time;
+    var $pretransfer_time;
+    var $size_upload;
+    var $size_download;
+    var $speed_download;
+    var $speed_upload;
+    var $download_content_length;
+    var $upload_content_length;
+    var $starttransfer_time;
+    var $redirect_time;
+    var $redirect_url;
+    var $primary_ip;
+    var $certinfo;
+    var $primary_port;
+    var $local_ip;
+    var $local_port;
 
     function __construct($curl_handle, $curl_response)
     {
         $info = curl_getinfo($curl_handle);
 
         $header_size = $info['header_size'];
-        $header = substr($curl_response, 0, $header_size);
-
-//        echo $header;
-
         $this->raw = $curl_response;
         $this->status_code = $info['http_code'];
-//        $this->headers = $info
         $this->text = substr($curl_response, $header_size);
         $this->url = $info['url'];
         $this->content_type = $info['content_type'];
