@@ -1,5 +1,4 @@
 <?php
-namespace python;
 
 class python_path {
     function exists($path) {
@@ -14,7 +13,6 @@ class python_path {
         return explode('/', $path);
     }
     function translate($path, $path_type=false) {
-        $retn = $path;
         $split_path =  $this->split($path);
 
         if (strtolower($path_type) == "windows") {

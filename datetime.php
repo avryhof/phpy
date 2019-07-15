@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/stdlib.php");
+require_once(__DIR__ . DIRECTORY_SEPARATOR . "stdlib.php");
 
 class python_datetime
 {
@@ -47,6 +47,8 @@ class python_datetime
             'second' => int($second),
             'tzinfo' => int($tzinfo)
         ]);
+
+        return $this->timetuple;
     }
 
     function __toString()

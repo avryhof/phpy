@@ -1,8 +1,9 @@
 <?php
-require_once("stdlib.php");
+require_once(__DIR__ . DIRECTORY_SEPARATOR . "stdlib.php");
 
 class python_HttpResponse {
     var $status_code;
+    var $content_type;
     var $text;
     var $headers;
     var $raw;
@@ -69,8 +70,14 @@ class python_requests
     var $ssl_verify = True;
     var $ssl_verify_status = True;
 
-    function __construct($kwargs = [])
+    function __construct($keyword_args = [])
     {
+        if (gettype($keyword_args) == 'array') {
+            $kwargs = new dict($keyword_args);
+        } else {
+            $kwargs = $keyword_args;
+        }
+
         $this->ssl_verify = $kwargs->get('ssl_verify');
         $this->ssl_verify_status = $kwargs->get('ssl_verify_status');
 
@@ -88,6 +95,8 @@ class python_requests
     }
 
     function request($options, $defaults) {
+        $response = null;
+
         $request_opts = $options + $defaults;
         if ($request_opts[CURLOPT_URL] == None) {
             $request_opts[CURLOPT_URL] = $this->url;
