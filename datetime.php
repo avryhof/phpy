@@ -83,7 +83,7 @@ class python_datetime
         }
 
         if ($showtime) {
-            $return_value .= date("H:i:s", $this->datetime);
+            $return_value .= (strlen($return_value) > 0 ? " " : "") . date("H:i:s", $this->datetime);
         }
 
         return $return_value;

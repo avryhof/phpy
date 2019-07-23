@@ -39,6 +39,9 @@ class xmltodict {
         }
 
         $this->xml_object = simplexml_load_string($this->xml, "SimpleXMLElement", LIBXML_NOCDATA);
+
+        echo "<pre>"; var_dump($this->xml_object); echo "</pre>";
+
         $this->xml_json = json_encode($this->xml_object);
         $this->parsed_xml = json_decode($this->xml_json, true);
         $this->return_dict = new dict($this->parsed_xml);

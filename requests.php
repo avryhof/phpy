@@ -41,11 +41,11 @@ class python_requests
     var $url = None;
     var $curl_options = array();
 
-    var $follow_location = False;
-    var $max_redir = False;
+    var $follow_location = true;
+    var $max_redir = 1;
 
-    var $ssl_verify = True;
-    var $ssl_verify_status = True;
+    var $ssl_verify = true;
+    var $ssl_verify_status = true;
 
     function __construct($keyword_args = [])
     {
@@ -58,6 +58,12 @@ class python_requests
         $this->ssl_verify = $kwargs->get('ssl_verify');
         $this->ssl_verify_status = $kwargs->get('ssl_verify_status');
 
+        if (gettype($keyword_args) == 'array') {
+            foreach($keyword_args as $keyword => $kwval) {
+                $this->{$keyword} = $kwval;
+            }
+        }
+
         $this->curl_options = array(
             CURLOPT_URL => $this->url,
             CURLOPT_HEADER => True,
@@ -67,7 +73,7 @@ class python_requests
             CURLOPT_FORBID_REUSE => 1,
             CURLOPT_SSL_VERIFYPEER => $this->ssl_verify,
             CURLOPT_SSL_VERIFYSTATUS => $this->ssl_verify_status,
-            CURLOPT_VERBOSE => False
+            CURLOPT_VERBOSE => False,
         );
     }
 
