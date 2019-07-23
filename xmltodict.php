@@ -34,6 +34,8 @@ class xmltodict {
     }
 
     function parse($xml=false) {
+        $xmldict = false;
+
         if ($xml) {
             $this->xml = $xml;
         }
@@ -44,8 +46,13 @@ class xmltodict {
 
         $this->xml_json = json_encode($this->xml_object);
         $this->parsed_xml = json_decode($this->xml_json, true);
-        $this->return_dict = new dict($this->parsed_xml);
 
-        return new dict($this->parse_array($this->return_dict->items()));
+
+        if ($this->parsed_xml) {
+            $this->return_dict = new dict($this->parsed_xml);
+            $xmldict = new dict($this->parse_array($this->return_dict->items()));
+        }
+
+        return $xmldict;
     }
 }
