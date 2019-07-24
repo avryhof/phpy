@@ -116,8 +116,8 @@ class dict implements ArrayAccess {
     }
 }
 
-function isinstance($value, $object) {
-    return (gettype($value) == gettype($object));
+function isinstance($value, $type_str) {
+    return (gettype($value) == $type_str);
 }
 
 function len($iterable) {
